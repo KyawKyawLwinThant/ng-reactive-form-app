@@ -1,0 +1,42 @@
+
+
+
+<div class="container">
+  <form autocomplete="off" [formGroup]="studentForm"  novalidate>
+    <div class="form-group row mt-5">
+      <label class="col-sm-2">Name</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control"
+               [class.is-invalid]="name?.invalid && (name?.dirty|| name?.touched)"
+               formControlName="name">
+        <div *ngIf="name?.invalid && (name?.dirty||name?.touched)">
+            <small *ngIf="name.errors.required" class="text text-danger">Name is required!</small>
+            <small *ngIf="name.errors.minlength" class="text text-danger">Name must be 5 characters at least.</small>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2">Age</label>
+      <div class="col-sm-8">
+        <input type="number" [class.is-invalid]="age?.invalid && (age?.dirty || age?.touched)" class="form-control" formControlName="age" required>
+        <div *ngIf="age?.invalid && (age?.dirty || age?.touched)">
+            <small *ngIf="age.errors.validateAge" class="text text-danger">Age must be between 18 and 50</small>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2">School</label>
+      <div class="col-sm-8">
+        <input type="text" [class.is-invalid]="school?.invalid && (school?.dirty || school?.touched)" class="form-control" formControlName="school">
+        <div *ngIf="school?.invalid && (school?.dirty || school?.touched)">
+           <small *ngIf="school.errors.required" class="text text-danger">School is required!</small>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
